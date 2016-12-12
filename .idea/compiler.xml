@@ -7,11 +7,14 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="notebook-app" />
+        <module name="notebook-app-repositories" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="notebook-app" target="1.8" />
+      <module name="notebook-app-repositories" target="1.8" />
       <module name="personal-notebook" target="1.8" />
+      <module name="PersonalNotebook" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
