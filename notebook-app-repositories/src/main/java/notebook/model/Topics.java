@@ -14,6 +14,9 @@ public class Topics {
     @Column(name="id")
     private Long id;
 
+    @Column(name="subject_id")
+    private Long subjectId;
+
     @Column(name="topics_name")
     private String topicsName;
 
@@ -29,6 +32,14 @@ public class Topics {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Long getSubjectId() {
+        return subjectId;
+    }
+
+    public void setSubjectId(Long subjectId) {
+        this.subjectId = subjectId;
     }
 
     public String getTopicsName() {

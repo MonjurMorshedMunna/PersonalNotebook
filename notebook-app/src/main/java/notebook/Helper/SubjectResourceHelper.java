@@ -12,8 +12,13 @@ import java.util.List;
  */
 @Component
 public class SubjectResourceHelper {
-    @Autowired
+
     SubjectRepository subjectRepository;
+
+    @Autowired
+    public SubjectResourceHelper(SubjectRepository subjectRepository) {
+        this.subjectRepository = subjectRepository;
+    }
 
     public List<Subject> getAllSubjects(){
         return subjectRepository.findAll();

@@ -9,6 +9,7 @@ import {HomeComponent} from "./components/home.component";
 import {LearnComponent} from "./components/learn.component";
 import {RevisionComponent} from "./components/revision.component";
 import {SubjectComponent} from "./components/subject.component";
+import {SubjectService} from "./services/subject.service";
 
 @NgModule({
   declarations: [
@@ -24,7 +25,7 @@ import {SubjectComponent} from "./components/subject.component";
     HttpModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [SubjectService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
