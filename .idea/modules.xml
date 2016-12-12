@@ -3,7 +3,9 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/notebook-app/notebook-app.iml" filepath="$PROJECT_DIR$/notebook-app/notebook-app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/notebook-repositories.iml" filepath="$PROJECT_DIR$/notebook-repositories.iml" />
       <module fileurl="file://$PROJECT_DIR$/notebook-repository.iml" filepath="$PROJECT_DIR$/notebook-repository.iml" />
+      <module fileurl="file://$PROJECT_DIR$/notebookrepositories.iml" filepath="$PROJECT_DIR$/notebookrepositories.iml" />
       <module fileurl="file://$PROJECT_DIR$/personal-notebook.iml" filepath="$PROJECT_DIR$/personal-notebook.iml" />
     </modules>
   </component>
