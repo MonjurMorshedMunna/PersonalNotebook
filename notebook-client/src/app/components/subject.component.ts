@@ -5,6 +5,8 @@
 import {Component, OnInit} from "@angular/core";
 import {SubjectService} from "../services/subject.service";
 import {Subject} from "../models/Subject";
+
+
 @Component({
   selector:'app-subject',
   templateUrl:'app/views/subject.component.html'
@@ -13,6 +15,8 @@ import {Subject} from "../models/Subject";
 export class SubjectComponent implements OnInit{
 
   subjects:Array<Subject>;
+  showAddArea:boolean = false;
+  addedSubject:string;
 
   constructor(private subjectService: SubjectService){
 
@@ -30,5 +34,32 @@ export class SubjectComponent implements OnInit{
 
   ngOnInit():void{
     this.getAllSubjects();
+  }
+
+  addNewSubject():void{
+    this.showAddArea=true;
+  }
+
+  addSubject(addedSubject:string):void{
+    console.log("Added  subject");
+    console.log(addedSubject);
+    var subject:Subject = <Subject>{};
+    subject.subjectName= addedSubject;
+    subject.isAdded=true;
+
+    this.subjects.push(subject);
+
+    this.addedSubject="";
+  }
+
+  enableEdit(subject:Subject):void{
+    subject.edit=true;
+    subject.isUpdated=true;
+  }
+
+  save():void{
+    this.subjectService.saveSubjects(this.subjects).then((message:any)=>{
+      this.getAllSubjects();
+    });
   }
 }

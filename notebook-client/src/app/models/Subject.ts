@@ -4,4 +4,8 @@
 export interface Subject{
   id: number;
   subjectName:string;
+  isAdded:boolean;
+  isUpdated:boolean;
+  isDeleted:boolean;
+  edit:boolean;
 }
