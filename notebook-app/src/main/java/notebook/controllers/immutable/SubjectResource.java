@@ -14,7 +14,9 @@ import java.util.List;
 public class SubjectResource extends MutableSubjectResource {
 
     @GetMapping("/subject/all")
-    public @ResponseBody List<Subject> getAllSubject(){
+    @ResponseBody
+    public  List<Subject> getAllSubject(){
+        List<Subject> subjects = mHelper.getAllSubjects();
         return mHelper.getAllSubjects();
     }
 
