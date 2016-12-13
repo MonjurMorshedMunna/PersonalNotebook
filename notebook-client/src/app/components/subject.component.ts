@@ -12,7 +12,7 @@ import {Subject} from "../models/Subject";
 
 export class SubjectComponent implements OnInit{
 
-  subjects:Subject[];
+  subjects:Array<Subject>;
 
   constructor(private subjectService: SubjectService){
 
@@ -21,11 +21,14 @@ export class SubjectComponent implements OnInit{
   private getAllSubjects():void{
    this.subjectService
      .getSubjects()
-     .then(subjects => this.subjects = subjects);
+     .then(subjects => {
+       this.subjects=[];
+       this.subjects=subjects;
+       console.log(this.subjects);
+     });
   }
 
   ngOnInit():void{
     this.getAllSubjects();
-    console.log(this.subjects);
   }
 }
