@@ -1,7 +1,7 @@
 package notebook.model;
 
 import javax.persistence.*;
-import java.sql.Date;
+import java.util.Date;
 
 /**
  * Created by monju on 12-Dec-16.
@@ -16,7 +16,7 @@ public class RevisionDate {
     private Long id;
 
     @Column(name="topics_id")
-    private int topicsId;
+    private Long topicsId;
 
     @Column(name="next_day")
     private Date nextDay;
@@ -51,6 +51,22 @@ public class RevisionDate {
     public RevisionDate() {
     }
 
+    public Date getSixthYear() {
+        return sixthYear;
+    }
+
+    public void setSixthYear(Date sixthYear) {
+        this.sixthYear = sixthYear;
+    }
+
+    public Date getSeventhYear() {
+        return seventhYear;
+    }
+
+    public void setSeventhYear(Date seventhYear) {
+        this.seventhYear = seventhYear;
+    }
+
     public Long getId() {
         return id;
     }
@@ -59,11 +75,11 @@ public class RevisionDate {
         this.id = id;
     }
 
-    public int getTopicsId() {
+    public Long getTopicsId() {
         return topicsId;
     }
 
-    public void setTopicsId(int topicsId) {
+    public void setTopicsId(Long topicsId) {
         this.topicsId = topicsId;
     }
 

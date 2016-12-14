@@ -13,16 +13,20 @@ import java.util.List;
  */
 @Repository
 public interface RevisionDateRepository extends CrudRepository<RevisionDate, Long> {
-    @Query(" select d.topicsId from RivisionDate d " +
-            "where d.nextDay=? or " +
-            "d.nextWeek=? or " +
-            "d.nextMonth=? or " +
-            "d.nextYear = ? or " +
-            "d.secondYear = ? or " +
-            "d.thirdYear = ? or " +
-            "d.fourthYear=? or " +
-            "d.fifthYear=? or " +
-            "d.sixthYear=? or " +
-            "d.seventhYear=?")
-    List<Long> findByDate(Date date);
+    @Query(" select d.topicsId from RevisionDate d , Topics t" +
+            "where d.nextDay=?1 or " +
+            "d.nextWeek=?1 or " +
+            "d.nextMonth=?1 or " +
+            "d.nextYear = ?1 or " +
+            "d.secondYear = ?1 or " +
+            "d.thirdYear = ?1 or " +
+            "d.fourthYear=?1 or " +
+            "d.fifthYear=?1 or " +
+            "d.sixthYear=?1 or " +
+            "d.seventhYear=?1 and " +
+            "t.topicsId=d.topicsId and " +
+            "t.subjectId = ?2")
+    List<Long> findByDateAndSubject(Date date, Long subjectId);
+
+    RevisionDate findByTopicsId(Long pTopicsId);
 }

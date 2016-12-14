@@ -1,1 +1,14 @@
-<h1>Learn works!</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-3" align="right">
+      Choose Subject
+    </div>
+    <div class="col-md-3">
+      <select [(ngModel)]="selectedSubject" (change)="fetchTopics(selectedSubject)">
+        <option *ngFor="let subject of subjects" value="subject">{{subject.subjectName}}</option>
+      </select>
+    </div>
+    <div class="col-md-3"></div>
+  </div>
+</div>
