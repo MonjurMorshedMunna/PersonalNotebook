@@ -21,4 +21,9 @@ public class MutableSubjectResource {
     ResponseEntity<?> add(@RequestBody List<Subject> subjects){
         return mHelper.saveSubjects(subjects);
     }
+
+    @RequestMapping(path="/subject/delete", method = RequestMethod.POST)
+    ResponseEntity<?> delete(@RequestBody Subject subject){
+        return mHelper.deleteASubject(subject);
+    }
 }

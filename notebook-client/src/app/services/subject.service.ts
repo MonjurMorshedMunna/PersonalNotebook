@@ -6,6 +6,7 @@ import {Injectable} from "@angular/core";
 import {Subject} from "../models/Subject";
 import {Http, Headers} from "@angular/http";
 import 'rxjs/add/operator/toPromise';
+import {toPromise} from "rxjs/operator/toPromise";
 
 @Injectable()
 export class SubjectService{
@@ -29,6 +30,14 @@ export class SubjectService{
        .post(this.url+"/add", JSON.stringify(subjects),{headers:this.headers})
        .toPromise()
        .then(res=> "success")
+       .catch(this.handleError);
+   }
+
+   public deleteASubject(subject:Subject):Promise<any>{
+     return this.http
+       .post(this.url+"/delete", JSON.stringify(subject), {headers: this.headers})
+       .toPromise()
+       .then(res=>"success")
        .catch(this.handleError);
    }
 

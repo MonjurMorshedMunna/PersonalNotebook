@@ -30,7 +30,7 @@ public class SubjectResourceHelper {
     }
 
     public List<Subject> getAllSubjects(){
-        return subjectRepository.findAll();
+        return subjectRepository.findAllByOrderByIdAsc();
     }
 
 
@@ -41,5 +41,10 @@ public class SubjectResourceHelper {
                 .collect(Collectors.toList());*/
         subjectRepository.save(subjects);
         return ResponseEntity.ok("Saved");
+    }
+
+    public ResponseEntity<?> deleteASubject(final Subject subject){
+        subjectRepository.delete(subject);
+        return ResponseEntity.ok("Deleted");
     }
 }

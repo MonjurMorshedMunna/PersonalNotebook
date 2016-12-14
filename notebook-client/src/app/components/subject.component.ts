@@ -62,4 +62,11 @@ export class SubjectComponent implements OnInit{
       this.getAllSubjects();
     });
   }
+
+  delete(subject:Subject):void{
+    this.subjectService.deleteASubject(subject).then((message:any)=>{
+      var index:number = this.subjects.indexOf(subject);
+      this.subjects.splice(index,1);
+    });
+  }
 }

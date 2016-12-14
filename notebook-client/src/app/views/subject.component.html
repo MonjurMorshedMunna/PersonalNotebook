@@ -39,7 +39,10 @@
           <td>{{subject.id}}</td>
           <td *ngIf="subject.edit!=true">{{subject.subjectName}}</td>
           <td *ngIf="subject.edit"><input type="text" [(ngModel)]="subject.subjectName"></td>
-          <td><button class="btn btn-default" (click)="enableEdit(subject)">Edit</button></td>
+          <td>
+            <button class="btn btn-default" (click)="enableEdit(subject)">Edit</button>
+            <button class="btn btn-default" (click)="delete(subject)">X</button>
+          </td>
         </tr>
         </tbody>
       </table>
