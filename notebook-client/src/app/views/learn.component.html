@@ -10,6 +10,21 @@
 
 <div class="container" *ngIf="showAddPortion!=true">
   <div class="row">
+    <div class="col-md-6">
+      <p *ngIf="learning">
+        Learning
+      </p>
+      <p *ngIf="learning==false">
+        Doing Revision
+      </p>
+    </div>
+    <div class="col-md-6" align="right">
+      <button class="btn btn-success" (click)="showLearningPortion()">Learn</button>
+      <button class="btn btn-danger" (click)="showRevisionPortion()">Revision</button>
+    </div>
+  </div>
+  <hr>
+  <div class="row">
     <div class="col-md-3"></div>
     <div class="col-md-3" align="right">
       Choose Subject
@@ -22,7 +37,7 @@
     <div class="col-md-3"></div>
   </div>
   <br>
-  <div class="row" align="center">
+  <div class="row" align="center" *ngIf="learning">
     <button type="button" class="btn btn-default" (click)="addATopic()">
       <span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span>
     </button>
@@ -30,8 +45,9 @@
   <div class="row">
     <div *ngFor="let topic of topics">
       <div class="col-md-10">
-        <p>{{topic.topicsName}}</p>
-        <p *ngIf=" topic.showAnswer">{{topic.answer}}</p>
+        <textarea disabled style="width: 100%; height: 100px;">{{topic.topicsName}}</textarea>
+        <textarea disabled style="width: 100%; height: 100px;" *ngIf=" topic.showAnswer">{{topic.answer}}</textarea>
+        <hr><hr>
       </div>
       <div class="col-md-2">
         <button type="button" class="btn btn-default" (click)="showAnswer(topic)">
@@ -39,6 +55,9 @@
         </button>
         <button type="button" class="btn btn-default" (click)="hideAnswer(topic)">
           X
+        </button>
+        <button type="button" class="btn btn-default" (click)="editTopic(topic)">
+          >>
         </button>
       </div>
       <hr>
@@ -50,16 +69,18 @@
   <div class="row">
     <p>Insert a topic</p>
     <br>
-    <textarea type="text" [(ngModel)]="newTopics.topicsName"></textarea>
+    <textarea  style="width: 100%; height: 150px;" type="text" [(ngModel)]="newTopics.topicsName"></textarea>
     <br>
     <br>
     <p>Insert the answer</p>
     <br>
-    <textarea type="text" [(ngModel)]="newTopics.answer"></textarea>
+    <textarea  style="width: 100%; height: 150px;" type="text" [(ngModel)]="newTopics.answer"></textarea>
   </div>
   <div class="row" align="right">
     <button class="btn btn-success" (click)="saveNewTopic()">Save</button>
   </div>
 </div>
+
+
 
 

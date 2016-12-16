@@ -25,6 +25,13 @@ export class LearnService{
       .catch(this.handleError);
   }
 
+  public getRevisionTopics(subject:Subject):Promise<Topics[]>{
+    return this.http.get(this.url+"/revision/subject/"+subject.id)
+      .toPromise()
+      .then(response=> response.json() as Topics[])
+      .catch(this.handleError);
+  }
+
   public saveTopics(topics:Topics):Promise<any>{
     return this.http
       .post(this.url+"/add", JSON.stringify(topics),{headers: this.headers})

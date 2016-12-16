@@ -16,6 +16,7 @@ export class LearnComponent implements OnInit{
   selectedSubject:Subject;
   showAddPortion:boolean=false;
   newTopics:Topics;
+  learning:boolean;
 
   constructor(private subjectService: SubjectService,
               private learnService: LearnService){
@@ -35,12 +36,14 @@ export class LearnComponent implements OnInit{
 
   ngOnInit():void{
     this.getAllSubjects();
+
   }
 
   fetchTopics(selectedSubject:Subject){
     console.log("Selected subject");
     console.log(this.selectedSubject);
     this.learnService.getTopics(this.selectedSubject).then((topics:Array<Topics>)=>{
+      this.learning=true;
       console.log("===topics====");
       console.log(topics);
       this.topics=[];
@@ -51,9 +54,39 @@ export class LearnComponent implements OnInit{
     });
   }
 
+
+  fetchRevisionTopics(selectedSubject:Subject){
+    console.log("Selected subject");
+    console.log(this.selectedSubject);
+    this.learnService.getRevisionTopics(this.selectedSubject).then((topics:Array<Topics>)=>{
+      this.learning=false;
+      console.log("===topics====");
+      console.log(topics);
+      this.topics=[];
+      this.topics = topics;
+      for(var i=0;i<this.topics.length;i++){
+        this.topics[i].showAnswer=false;
+      }
+    });
+  }
+
+  showLearningPortion(){
+    this.fetchTopics(this.selectedSubject);
+  }
+
+  showRevisionPortion(){
+    this.fetchRevisionTopics(this.selectedSubject);
+
+  }
+
   addATopic(){
     this.showAddPortion=true;
     this.newTopics= <Topics>{};
+  }
+
+  editTopic(topic:Topics){
+    this.showAddPortion=true;
+    this.newTopics=topic;
   }
 
   saveNewTopic(){

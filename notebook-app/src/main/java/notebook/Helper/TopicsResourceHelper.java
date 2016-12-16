@@ -64,11 +64,13 @@ public class TopicsResourceHelper {
         return calendar.getTime();
     }
 
-    public List<Topics> getTopicsOfToday(final Long subjectId){
+    public List<Topics> getTopicsOfToday(final Long subjectId, boolean revision){
         Date currentDate = new Date();
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(new Date());
-        calendar.add(Calendar.DATE,1);
+        if(revision==false){
+            calendar.add(Calendar.DATE,1);
+        }
         Date nextDate = calendar.getTime();
         List<RevisionDate> topicsOfRevisionDate = revisionDateRepository.findTopics(calendar.getTime(),subjectId);
         List<Topics> topics = new ArrayList<>();

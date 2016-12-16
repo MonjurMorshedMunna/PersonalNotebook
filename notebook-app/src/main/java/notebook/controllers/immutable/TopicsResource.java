@@ -18,7 +18,13 @@ public class TopicsResource extends MutableTopicsResource{
 
     @GetMapping(value="/topics/today/subject/{subject}")
     public List<Topics> getTopics(@PathVariable("subject") Long subjectId){
-        return mHelper.getTopicsOfToday(subjectId);
+        return mHelper.getTopicsOfToday(subjectId,false);
     }
+
+    @GetMapping(value="/topics/revision/subject/{subject}")
+    public List<Topics> getRevisionTopics(@PathVariable("subject") Long subjectId){
+        return mHelper.getTopicsOfToday(subjectId,true);
+    }
+
 
 }
