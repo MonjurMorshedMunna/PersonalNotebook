@@ -19,7 +19,7 @@ export class LearnService{
   }
 
   public getTopics(subject:Subject):Promise<Topics[]>{
-    return this.http.get(this.url+"/today/subject/"+subject.subjectName)
+    return this.http.get(this.url+"/today/subject/"+subject.id)
       .toPromise()
       .then(response=> response.json() as Topics[])
       .catch(this.handleError);

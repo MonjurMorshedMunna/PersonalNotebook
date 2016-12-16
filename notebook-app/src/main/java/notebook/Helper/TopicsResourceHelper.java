@@ -1,10 +1,8 @@
 package notebook.Helper;
 
 import notebook.model.RevisionDate;
-import notebook.model.Subject;
 import notebook.model.Topics;
 import notebook.repositories.RevisionDateRepository;
-import notebook.repositories.SubjectRepository;
 import notebook.repositories.TopicsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -31,17 +29,17 @@ public class TopicsResourceHelper {
 
         topicsRepository.save(pTopics);
 
-        if(revisionDateRepository.findByTopicsId(pTopics.getId())!=null){
-            saveToRevisionDate(pTopics.getId());
+        if(revisionDateRepository.findByTopicsId(pTopics)==null){
+            saveToRevisionDate(pTopics);
         }
 
         return ResponseEntity.ok("created");
     }
 
-    private void saveToRevisionDate(Long pTopicsId){
+    private void saveToRevisionDate(Topics pTopics){
         RevisionDate revisionDate = new RevisionDate();
 
-        revisionDate.setTopicsId(pTopicsId);
+        revisionDate.setTopics(pTopics);
 
         revisionDate.setNextDay(getFormatedDate(1));
         revisionDate.setNextWeek(getFormatedDate(7));
@@ -52,7 +50,7 @@ public class TopicsResourceHelper {
         revisionDate.setFourthYear(getFormatedDate(1460));
         revisionDate.setFifthYear(getFormatedDate(1825));
         revisionDate.setSixthYear(getFormatedDate(2190));
-        revisionDate.setSecondYear(getFormatedDate(2555));
+        revisionDate.setSeventhYear(getFormatedDate(2555));
 
         revisionDateRepository.save(revisionDate);
     }
@@ -71,11 +69,12 @@ public class TopicsResourceHelper {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(new Date());
         calendar.add(Calendar.DATE,1);
-        List<Long> topicsIds = revisionDateRepository.findByDateAndSubject(calendar.getTime(),subjectId);
+        Date nextDate = calendar.getTime();
+        List<RevisionDate> topicsOfRevisionDate = revisionDateRepository.findTopics(calendar.getTime(),subjectId);
         List<Topics> topics = new ArrayList<>();
 
-        for(Long topicId: topicsIds){
-            Topics topic = topicsRepository.findOne(topicId);
+        for(RevisionDate mTopics: topicsOfRevisionDate){
+            Topics topic = mTopics.getTopics();
             topics.add(topic);
         }
 

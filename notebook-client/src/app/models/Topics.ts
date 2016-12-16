@@ -5,6 +5,7 @@
 export interface Topics{
   id:number;
   subjectId: number;
-  topics_name:string;
+  topicsName:string;
   answer:string;
+  showAnswer:boolean;
 }

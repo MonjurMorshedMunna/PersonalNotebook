@@ -11,12 +11,13 @@ import java.util.Date;
 public class RevisionDate {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id")
     private Long id;
 
-    @Column(name="topics_id")
-    private Long topicsId;
+    @OneToOne
+    @JoinColumn(name="topics_id")
+    private Topics topics;
 
     @Column(name="next_day")
     private Date nextDay;
@@ -75,12 +76,12 @@ public class RevisionDate {
         this.id = id;
     }
 
-    public Long getTopicsId() {
-        return topicsId;
+    public Topics getTopics() {
+        return topics;
     }
 
-    public void setTopicsId(Long topicsId) {
-        this.topicsId = topicsId;
+    public void setTopics(Topics topics) {
+        this.topics = topics;
     }
 
     public Date getNextDay() {

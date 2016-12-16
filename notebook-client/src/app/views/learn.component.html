@@ -1,14 +1,65 @@
-<div class="container">
+<style>
+  .addPortion input{
+    width:100%;
+    box-sizing:border-box;
+    -moz-box-sizing:border-box;
+  }
+</style>
+
+
+
+<div class="container" *ngIf="showAddPortion!=true">
   <div class="row">
     <div class="col-md-3"></div>
     <div class="col-md-3" align="right">
       Choose Subject
     </div>
     <div class="col-md-3">
-      <select [(ngModel)]="selectedSubject" (change)="fetchTopics(selectedSubject)">
-        <option *ngFor="let subject of subjects" value="subject">{{subject.subjectName}}</option>
+      <select [(ngModel)]="selectedSubject" (change)="fetchTopics($event)">
+        <option *ngFor="let subject of subjects" [ngValue]="subject">{{subject.subjectName}}</option>
       </select>
     </div>
     <div class="col-md-3"></div>
   </div>
+  <br>
+  <div class="row" align="center">
+    <button type="button" class="btn btn-default" (click)="addATopic()">
+      <span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span>
+    </button>
+  </div>
+  <div class="row">
+    <div *ngFor="let topic of topics">
+      <div class="col-md-10">
+        <p>{{topic.topicsName}}</p>
+        <p *ngIf=" topic.showAnswer">{{topic.answer}}</p>
+      </div>
+      <div class="col-md-2">
+        <button type="button" class="btn btn-default" (click)="showAnswer(topic)">
+          <span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span>
+        </button>
+        <button type="button" class="btn btn-default" (click)="hideAnswer(topic)">
+          X
+        </button>
+      </div>
+      <hr>
+    </div>
+  </div>
 </div>
+
+<div class="container addPortion" *ngIf="showAddPortion">
+  <div class="row">
+    <p>Insert a topic</p>
+    <br>
+    <textarea type="text" [(ngModel)]="newTopics.topicsName"></textarea>
+    <br>
+    <br>
+    <p>Insert the answer</p>
+    <br>
+    <textarea type="text" [(ngModel)]="newTopics.answer"></textarea>
+  </div>
+  <div class="row" align="right">
+    <button class="btn btn-success" (click)="saveNewTopic()">Save</button>
+  </div>
+</div>
+
+

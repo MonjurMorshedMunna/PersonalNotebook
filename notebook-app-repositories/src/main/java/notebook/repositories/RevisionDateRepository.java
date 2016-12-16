@@ -1,8 +1,9 @@
 package notebook.repositories;
 
 import notebook.model.RevisionDate;
+import notebook.model.Topics;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.Date;
@@ -12,8 +13,9 @@ import java.util.List;
  * Created by monju on 12-Dec-16.
  */
 @Repository
-public interface RevisionDateRepository extends CrudRepository<RevisionDate, Long> {
-    @Query(" select d.topicsId from RevisionDate d , Topics t" +
+public interface RevisionDateRepository extends JpaRepository<RevisionDate, Long> {
+
+    @Query(" select d from RevisionDate d  " +
             "where d.nextDay=?1 or " +
             "d.nextWeek=?1 or " +
             "d.nextMonth=?1 or " +
@@ -24,9 +26,11 @@ public interface RevisionDateRepository extends CrudRepository<RevisionDate, Lon
             "d.fifthYear=?1 or " +
             "d.sixthYear=?1 or " +
             "d.seventhYear=?1 and " +
-            "t.topicsId=d.topicsId and " +
-            "t.subjectId = ?2")
-    List<Long> findByDateAndSubject(Date date, Long subjectId);
+            "d.topics.subjectId= ?2")
+    List<RevisionDate> findTopics(Date date, Long subjectId);
 
-    RevisionDate findByTopicsId(Long pTopicsId);
+
+    @Query("select d from RevisionDate d " +
+            "where d.topics=?1")
+    RevisionDate findByTopicsId(Topics pTopics);
 }
