@@ -29,8 +29,8 @@
     <div class="col-md-3" align="right">
       Choose Subject
     </div>
-    <div class="col-md-3">
-      <select [(ngModel)]="selectedSubject" (change)="fetchTopics($event)">
+    <div class="col-md-3 form-group" >
+      <select [(ngModel)]="selectedSubject" (change)="fetchTopics($event)" class="form-control">
         <option *ngFor="let subject of subjects" [ngValue]="subject">{{subject.subjectName}}</option>
       </select>
     </div>
@@ -44,9 +44,9 @@
   </div>
   <div class="row">
     <div *ngFor="let topic of topics">
-      <div class="col-md-10">
-        <textarea disabled style="width: 100%; height: 100px;">{{topic.topicsName}}</textarea>
-        <textarea disabled style="width: 100%; height: 100px;" *ngIf=" topic.showAnswer">{{topic.answer}}</textarea>
+      <div class="col-md-10" >
+        <textarea  disabled style="width: 100%; height: 100px;">{{topic.topicsName}}</textarea>
+        <textarea  disabled style="width: 100%; height: 100px;" *ngIf=" topic.showAnswer">{{topic.answer}}</textarea>
         <hr><hr>
       </div>
       <div class="col-md-2">
@@ -65,16 +65,16 @@
   </div>
 </div>
 
-<div class="container addPortion" *ngIf="showAddPortion">
+<div class="container addPortion form-group" *ngIf="showAddPortion">
   <div class="row">
     <p>Insert a topic</p>
     <br>
-    <textarea  style="width: 100%; height: 150px;" type="text" [(ngModel)]="newTopics.topicsName"></textarea>
+    <textarea class="form-control"  style="width: 100%; height: 150px;" type="text" [(ngModel)]="newTopics.topicsName"></textarea>
     <br>
     <br>
     <p>Insert the answer</p>
     <br>
-    <textarea  style="width: 100%; height: 150px;" type="text" [(ngModel)]="newTopics.answer"></textarea>
+    <textarea class="form-control" style="width: 100%; height: 150px;" type="text" [(ngModel)]="newTopics.answer"></textarea>
   </div>
   <div class="row" align="right">
     <button class="btn btn-success" (click)="saveNewTopic()">Save</button>

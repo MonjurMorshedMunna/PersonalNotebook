@@ -4,10 +4,9 @@
       <a class="navbar-brand" routerLInk="/home">Notebook</a>
     </div>
     <ul class="nav navbar-nav">
-      <li ><a routerLink="/home">Home</a></li>
-      <li ><a routerLink="/subject">Subject</a></li>
-      <li ><a routerLink="/learn">Learn</a></li>
-      <li ><a routerLink="/revision">Revision</a></li>
+      <li class="{{home}}" (click)="makeActive('home')"><a routerLink="/home">Home</a></li>
+      <li class="{{subject}}" (click)="makeActive('subject')"><a routerLink="/subject">Subject</a></li>
+      <li class="{{learn}}" (click)="makeActive('learn')"><a routerLink="/learn">Learn & Revise</a></li>
     </ul>
   </div>
 </nav>

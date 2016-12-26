@@ -17,15 +17,18 @@ export class SubjectComponent implements OnInit{
   subjects:Array<Subject>;
   showAddArea:boolean = false;
   addedSubject:string;
+  showSpinner:boolean=false;
 
   constructor(private subjectService: SubjectService){
 
   }
 
   private getAllSubjects():void{
+    this.showSpinner=true;
    this.subjectService
      .getSubjects()
      .then(subjects => {
+       this.showSpinner=false;
        this.subjects=[];
        this.subjects=subjects;
        console.log(this.subjects);
@@ -58,7 +61,9 @@ export class SubjectComponent implements OnInit{
   }
 
   save():void{
+    this.showSpinner=true;
     this.subjectService.saveSubjects(this.subjects).then((message:any)=>{
+      this.showSpinner=false;
       this.getAllSubjects();
     });
   }
