@@ -4,6 +4,10 @@
     box-sizing:border-box;
     -moz-box-sizing:border-box;
   }
+
+  .white-space-pre{
+    white-space:pre-wrap;
+  }
 </style>
 
 
@@ -44,10 +48,10 @@
   </div>
   <div class="row">
     <div *ngFor="let topic of topics">
-      <div class="col-md-10" >
-        <textarea  disabled style="width: 100%; height: 100px;">{{topic.topicsName}}</textarea>
-        <textarea  disabled style="width: 100%; height: 100px;" *ngIf=" topic.showAnswer">{{topic.answer}}</textarea>
-        <hr><hr>
+      <div class="col-md-10 well"  >
+        <p  class="white-space-pre" style="background-color: antiquewhite; padding: 2%;">{{topic.topicsName}}</p>
+        <p class="white-space-pre" *ngIf=" topic.showAnswer" style="background-color: floralwhite; padding: 2%;">{{topic.answer}}</p>
+
       </div>
       <div class="col-md-2">
         <button type="button" class="btn btn-default" (click)="showAnswer(topic)">
