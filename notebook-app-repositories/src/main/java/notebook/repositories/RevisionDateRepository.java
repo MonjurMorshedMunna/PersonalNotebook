@@ -16,7 +16,7 @@ import java.util.List;
 public interface RevisionDateRepository extends JpaRepository<RevisionDate, Long> {
 
     @Query(" select d from RevisionDate d  " +
-            "where d.topics.subjectId=?2 and  d.nextDay=?1 or " +
+            "where  (d.nextDay=?1 or " +
             "d.nextWeek=?1 or " +
             "d.nextMonth=?1 or " +
             "d.nextYear = ?1 or " +
@@ -25,7 +25,7 @@ public interface RevisionDateRepository extends JpaRepository<RevisionDate, Long
             "d.fourthYear=?1 or " +
             "d.fifthYear=?1 or " +
             "d.sixthYear=?1 or " +
-            "d.seventhYear=?1" )
+            "d.seventhYear=?1 ) and d.topics.subjectId=?2" )
     List<RevisionDate> findTopics(Date date, Long subjectId);
 
 

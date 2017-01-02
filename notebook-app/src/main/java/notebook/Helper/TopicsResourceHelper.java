@@ -68,7 +68,7 @@ public class TopicsResourceHelper {
         Date currentDate = new Date();
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(new Date());
-        if(revision==false){
+        if(revision==true){
             calendar.add(Calendar.DATE,1);
         }
         Date nextDate = calendar.getTime();
